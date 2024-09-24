@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
-    res.sendFile(process.cwd() + '/views/index.html');
+      res.sendFile(process.cwd() + '/views/index.html');
   });
 
 //For FCC testing purposes
@@ -35,10 +35,10 @@ apiRoutes(app);
 app.use(function(req, res, next) {
   res.status(404)
     .type('text')
-    .send('Not Found');
+     .send('Not Found');
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3008;
 
 //Start our server and tests!
 app.listen(port, function () {

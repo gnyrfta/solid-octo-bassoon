@@ -42,7 +42,8 @@
     <script>
       $(function() {
         $('#convertForm').submit(function(event) {
-          event.preventDefault();
+            event.preventDefault();
+	    console.log('Script is running');
           $.ajax({
             url: '/api/convert',
             type: 'get',

@@ -1,10 +1,18 @@
 function ConvertHandler() {
   
     this.getNum = function(input) {
-
+	//Split up into character groupings.
+	//Check if first grouping contains 1 .
+	//If so, use decimalRegex.
+	//If more than one dot, throw error.
+	//If no dots, use decimalregex - it will should correct value.
+	//change name from decimalregex.
+	//let wordRegex = /Anything whitespace anything /
+	//let dotRegex=/\.{1}/
+	//console.log(input)
 	let resultString;
-	
-	let integerRegex=/[0-9]+/
+	//	let decimalRegex=/[0-9]+\.?[0-9]+/
+		let integerRegex=/[0-9]+/
 	let floatRegex = /\d+(\.\d+)?/
 	let fractionRegex=/\d+(\.\d+)?\/\d+(\.\d+)?/
 	let doubleFractionRegex=/\S*\/\S*\// //zero or more not ws followed by slash followed by zero or more not ws followed by slash.
@@ -19,8 +27,10 @@ function ConvertHandler() {
 	    console.log("A fraction.");
 	    resultString=input.match(fractionRegex);
 	    let splitResult = resultString[0].split('/');
+	    console.log(splitResult);
 	    let denominator = parseFloat(splitResult[0]);
 	    let nominator = parseFloat(splitResult[1]);
+	    console.log(denominator/nominator);
 	    result=denominator/nominator;
 	    result=result.toFixed(5);
 	}
@@ -28,6 +38,7 @@ function ConvertHandler() {
 	{
 	    console.log("A float.");
 	    resultString = input.match(floatRegex);
+	    console.log(resultString[0]);
 	    result = parseFloat(resultString[0]);      
 	}
 	else if(integerRegex.test(input))
@@ -37,19 +48,25 @@ function ConvertHandler() {
 	}
 	else
 	{
-	    resultString=1;
+	    resultString=1; //Throw error here later? 
 	    result = parseFloat(resultString);
 	}
 	if(!result==undefined)
 	{
 	    result = Number(result).toFixed(5);
 	}
+	//console.log(resultString);
+	//console.log(result);
 	return result;
     };
   
     this.getUnit = function(input) {
+	console.log('%%%%%%%%%%%');
+	console.log(input);
 	let characterRegex=/[a-z]+/i
 	let result=input.match(characterRegex)[0];
+	console.log('In getUnit, this is result:');
+	console.log(result);
 	if(result!=='L' && result!=='l')
 	{
 	    result=result.toLowerCase();
@@ -67,6 +84,7 @@ function ConvertHandler() {
 	case 'kg': break;
 	default: result=undefined;
 	}
+	console.log(result);
     return result;
   };
   
@@ -114,7 +132,7 @@ function ConvertHandler() {
   this.convert = function(initNum, initUnit) {
     let result;
       const galToL = 3.78541;
-      const lbsToKg = 0.453592;
+      const lbsToKg = 0.45359;
       const miToKm = 1.60934;
       switch(initUnit) {
       case 'L':
@@ -147,6 +165,7 @@ function ConvertHandler() {
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result;
+    
     return result;
   };
   
